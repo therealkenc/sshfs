@@ -11,9 +11,8 @@ target_compile_definitions(sshfs PUBLIC
     HAVE_CONFIG_H
     _FILE_OFFSET_BITS=64 
 )
-
 target_include_directories(sshfs PRIVATE
-    "/usr/local/include/fuse3"
+    "${FUSE3_INCLUDE_DIR}"
     "/usr/include/glib-2.0"
     "/usr/lib/x86_64-linux-gnu/glib-2.0/include"
 )
