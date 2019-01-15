@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.5)
 project(sshfs)
 
 #add_subdirectory(compat)
-add_executable(sshfs sshfs.c cache.c)
+add_library(sshfs SHARED sshfs.c cache.c)
+#add_executable(sshfs sshfs.c cache.c)
 target_compile_definitions(sshfs PRIVATE
     FUSE_USE_VERSION=31
     _REENTRANT 

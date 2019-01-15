@@ -3470,7 +3470,12 @@ static int sshfs_opt_proc(void *data, const char *arg, int key,
 				}
 			}
 #else
-			sshfs.mountpoint = realpath(arg, NULL);
+			if (strncmp(arg, "/dev/fd", 7) != 0) {
+				sshfs.mountpoint = realpath(arg, NULL);
+			} else {
+				size_t len = strlen(arg)+1;
+				sshfs.mountpoint = strncpy(malloc(len), arg, len);
+			}
 #endif
 			if (!sshfs.mountpoint) {
 				fprintf(stderr, "sshfs: bad mount point `%s': %s\n",
